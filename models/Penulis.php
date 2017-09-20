@@ -27,6 +27,8 @@ class Penulis extends \yii\db\ActiveRecord
         return 'penulis';
     }
 
+    
+
     /**
      * @inheritdoc
      */
@@ -66,6 +68,8 @@ class Penulis extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Buku::className(), ['penulis' => 'id']);
     }
+
+
     /** 
     * @return \yii\db\ActiveQuery
     */

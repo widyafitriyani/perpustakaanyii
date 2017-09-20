@@ -1,42 +1,61 @@
 <?php
 
 namespace app\models;
-use app\models\Pengguna;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+use Yii;
+
+/**
+ * This is the model class for table "user".
+ *
+ * @property integer $id
+ * @property string $nama
+ * @property string $username
+ * @property string $password
+ * @property integer $role
+ */
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $nama;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-    public $role;
-
-   /* private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];*/
-
 
     /**
      * @inheritdoc
      */
-    public static function findIdentity($id)
+    public static function tableName()
     {
-        $user = Pengguna::findOne($id);
+        return 'user';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['nama', 'username', 'password', 'role'], 'required'],
+            [['role'], 'integer'],
+            [['nama', 'username', 'password'], 'string', 'max' => 255],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'nama' => 'Nama',
+            'username' => 'Username',
+            'password' => 'Password',
+            'role' => 'Role',
+            'authkey' => 'Authkey',
+        ];
+    }
+
+
+
+     public static function findIdentity($id)
+    {
+        $user = User::findOne($id);
         if(count($user)){
         return new static($user);
     }
@@ -49,7 +68,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     public static function findIdentityByAccessToken($token, $type = null)
    {
         //mencari user login berdasarkan accessToken dan hanya dicari 1.
-        $user = Pengguna::find()->where(['accessToken'=>$token])->one(); 
+        $user = User::find()->where(['accessToken'=>$token])->one(); 
         if(count($user)){
             return new static($user);
         }
@@ -65,7 +84,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     public static function findByUsername($username)
     {
         //mencari user login berdasarkan username dan hanya dicari 1.
-        $user = Pengguna::find()->where(['username'=>$username])->one(); 
+        $user = User::find()->where(['username'=>$username])->one(); 
         if(count($user)){
             return new static($user);
         }
@@ -85,7 +104,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public function getAuthKey()
     {
-        return $this->authKey;
+        
     }
 
     /**
@@ -104,6 +123,6 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
 }

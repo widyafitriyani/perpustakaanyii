@@ -10,12 +10,13 @@ $this->params['breadcrumbs'][] = ['label' => 'Jenis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Sunting';
 ?>
-<div class="jenis-update">
-
-    <h2><?= Html::encode($this->title) ?></h2>
+<div class="jenis-update box box-primary">
+<div class="box-header">
+      <div class="box-body">
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 
+</div>
 </div>

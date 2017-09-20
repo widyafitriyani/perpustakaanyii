@@ -10,12 +10,13 @@ $this->title = 'Tambah Jenis Buku';
 $this->params['breadcrumbs'][] = ['label' => 'Jenis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="jenis-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="jenis-create box box-primary">
+<div class="box-header">
+      <div class="box-body">
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 
+</div>
 </div>

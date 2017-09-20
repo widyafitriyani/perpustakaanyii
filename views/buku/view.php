@@ -10,17 +10,13 @@ $this->title = 'Detail Buku';
 $this->params['breadcrumbs'][] = ['label' => 'Buku', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="buku-view">
-
-    <h1>Detail Buku</h1>
-
-    <p>
-        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Buku',['update', 'id' => $model->id], ['class' => 'btn btn-primary'])?>
-           <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Buku',['buku/index', 'id' => $model->id], ['class' => 'btn btn-warning'])?>
-    </p>
+<div class="buku-view box box-primary">
+    <div class="box-header">
+      <div class="box-body">
 
     <?= DetailView::widget([
         'model' => $model,
+        'template' => '<tr><th width="180px" style="text-align:right">{label}</th><td>{value}</td></tr>',
         'attributes' => [
 
             'nama',
@@ -42,4 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+</div>
+<div>
+   <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Buku',['update', 'id' => $model->id], ['class' => 'btn btn-primary'])?>
+           <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Buku',['buku/index', 'id' => $model->id], ['class' => 'btn btn-warning'])?>
 </div>

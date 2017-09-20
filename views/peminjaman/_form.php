@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
 use app\models\Buku;
 use app\models\Pengguna;
@@ -11,15 +11,27 @@ use dosamigos\datepicker\DatePicker;
 /* @var $model app\models\Peminjaman */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<?php $form = ActiveForm::begin([
+    'layout'=>'horizontal',
+    'enableAjaxValidation'=>false,
+    'enableClientValidation'=>false,
+    'fieldConfig' => [
+        'horizontalCssClasses' => [
+            'label' => 'col-sm-2',
+            'wrapper' => 'col-sm-4',
+            'error' => '',
+            'hint' => '',
+        ],
+    ]
+]); ?>
 
 <div class="peminjaman-form">
-
-    <?php $form = ActiveForm::begin(); ?>
+    <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'id_buku')->widget(Select2::classname(), [
     'data' => Buku::getList(),
     'language' => 'de',
-    'options' => ['placeholder' => 'Select a state ...'],
+    'options' => ['placeholder' => 'Pilih Buku'],
     'pluginOptions' => [
      'allowClear' => true
     ],
@@ -28,7 +40,7 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'id_user')->widget(Select2::classname(), [
     'data' => Pengguna::getList(),
     'language' => 'de',
-    'options' => ['placeholder' => 'Select a state ...'],
+    'options' => ['placeholder' => 'pilih user'],
     'pluginOptions' => [
      'allowClear' => true
     ],
@@ -55,7 +67,7 @@ use dosamigos\datepicker\DatePicker;
         ]
 ]);?>
 
-    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-3">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 

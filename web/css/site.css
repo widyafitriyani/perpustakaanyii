@@ -114,10 +114,26 @@ a.desc:after {
     outline: none;
 }
 
-.kotak
+.kotak1
 {
-    background-color: #FFC0CB;
-    font-size: 60px;
-    height: 130px;
-    padding: 13px;
+    background-color: #B0E0E6;
+    font-size: 50px;
+    height: 100px;
+    padding: 10px;
+}
+
+.kotak2
+{
+    background-color: #FFBC77;
+    font-size: 50px;
+    height: 100px;
+    padding: 10px;
+}
+
+.kotak3
+{
+    background-color: #FAABEB;
+    font-size: 50px;
+    height: 100px;
+    padding: 10px;
 }

@@ -10,12 +10,12 @@ $this->title = 'Tambah Peminjaman';
 $this->params['breadcrumbs'][] = ['label' => 'Peminjaman', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="peminjaman-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="peminjaman-create box box-primary">
+<div class="box-header">
+      <div class="box-body">
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
+</div>
 </div>

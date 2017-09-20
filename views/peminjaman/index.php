@@ -11,12 +11,11 @@ $this->title = 'Tambah Peminjaman';
 $this->title = 'Peminjaman';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="peminjaman-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="peminjaman-index box box-primary">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
+    <div class="box-header">
         <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Tambah Peminjaman', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
@@ -49,4 +48,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+</div>
 </div>

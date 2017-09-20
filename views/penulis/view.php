@@ -10,17 +10,13 @@ $this->title = $model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Penulis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="penulis-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Penulis', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Penulis', ['penulis/index', 'id' => $model->id], ['class' => 'btn btn-warning'])?>
-    </p>
+<div class="penulis-view box box-primary">
+<div class="box-header">
+      <div class="box-body">
 
     <?= DetailView::widget([
         'model' => $model,
+        'template' => '<tr><th width="180px" style="text-align:right">{label}</th><td>{value}</td></tr>',
         'attributes' => [
             'nama',
             [
@@ -37,3 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+<div>
+
+    <p>
+        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Penulis', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Penulis', ['penulis/index', 'id' => $model->id], ['class' => 'btn btn-warning'])?>
+    </p>
+    </div>
+    

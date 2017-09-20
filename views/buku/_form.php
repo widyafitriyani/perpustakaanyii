@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
 //
 use app\models\Jenis;
@@ -10,10 +10,22 @@ use app\models\Penulis;
 /* @var $model app\models\Buku */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<?php $form = ActiveForm::begin([
+    'layout'=>'horizontal',
+    'enableAjaxValidation'=>false,
+    'enableClientValidation'=>false,
+    'fieldConfig' => [
+        'horizontalCssClasses' => [
+            'label' => 'col-sm-2',
+            'wrapper' => 'col-sm-4',
+            'error' => '',
+            'hint' => '',
+        ],
+    ]
+]); ?>
 
 <div class="buku-form">
-
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
@@ -21,7 +33,7 @@ use app\models\Penulis;
     	//
     'data' => Jenis::getList(),
     'language' => 'de',
-    'options' => ['placeholder' => 'Select a state ...'],
+    'options' => ['placeholder' => 'Pilih Jenis Buku'],
     'pluginOptions' => [
      'allowClear' => true
     ],
@@ -31,14 +43,15 @@ use app\models\Penulis;
     	//
     'data' => Penulis::getList(),
     'language' => 'de',
-    'options' => ['placeholder' => 'Select a state ...'],
+    'options' => ['placeholder' => 'Pilih Penulis Buku'],
     'pluginOptions' => [
      'allowClear' => true
     ],
 	]); ?>
 
     <?= $form->field($model, 'file')->fileInput(['maxlength' => true]) ?>
-    <div class="form-group">
+
+        <div class="col-sm-offset-2 col-sm-3">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 

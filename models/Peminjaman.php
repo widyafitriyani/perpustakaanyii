@@ -22,6 +22,11 @@ class Peminjaman extends \yii\db\ActiveRecord
     {
         return 'peminjaman';
     }
+    
+     public static function getCount()
+    {
+        return self::find()->count();
+    }
 
     /**
      * @inheritdoc

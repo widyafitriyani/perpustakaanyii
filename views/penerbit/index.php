@@ -10,13 +10,12 @@ use yii\grid\GridView;
 $this->title = 'Penerbit';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="penerbit-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="penerbit-index box box-primary">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Tambah Penerbit', ['create'], ['class' => 'btn btn-success']) ?>
+    <div class="box-header">
+        <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Tambah Penerbit', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -36,4 +35,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+</div>
 </div>

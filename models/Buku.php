@@ -66,6 +66,8 @@ class Buku extends \yii\db\ActiveRecord
         return $this->hasOne(Jenis::className(), ['id' => 'id_jenis']);
     }
 
+
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -73,6 +75,7 @@ class Buku extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Penulis::className(), ['id' => 'penulis']);
     }
+
  /**
      * @return \yii\db\ActiveQuery
      */

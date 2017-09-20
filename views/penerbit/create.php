@@ -10,12 +10,13 @@ $this->title = 'Tambah Penerbit';
 $this->params['breadcrumbs'][] = ['label' => 'Penerbits', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="penerbit-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="penerbit-create box box-primary">
+<div class="box-header">
+      <div class="box-body">
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 
+</div>
 </div>

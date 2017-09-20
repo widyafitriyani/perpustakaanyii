@@ -3,10 +3,31 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id' => 'basic',
+    'id' => 'Perpustakaan',
+    'name' => 'Perpustakaan',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'timeZone' => 'Asia/Jakarta',
     'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                   '@app/views' => '@app/themes/adminlte'
+                ],
+            ],
+        ],
+        'reCaptcha' => [
+            'name' => 'reCaptcha',
+            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+            'siteKey' => '6LcsmysUAAAAAA-no9ZigXCqF-769IlTYdjCDkBr',
+            'secret' => '6LcsmysUAAAAANifDc5tKASe4WJEyp75zGYrrYtb',
+        ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'thousandSeparator' => '.',
+            'decimalSeparator' => ',',
+            'currencyCode' => 'Rp'
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'asdasdkasndkn',
@@ -46,6 +67,11 @@ $config = [
             ],
         ],
         */
+        ],
+            'modules' => [
+                'gridview' =>  [
+                'class' => '\kartik\grid\Module'
+            ]
     ],
     'params' => $params,
 ];
@@ -59,7 +85,7 @@ if (YII_ENV_DEV) {
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 
-    $config['bootstrap'][] = 'gii';
+     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.

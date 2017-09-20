@@ -11,17 +11,13 @@ $this->title = $model->jenis_buku;
 $this->params['breadcrumbs'][] = ['label' => 'Jenis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="jenis-view">
-
-<h1>Detail Buku</h1>
-
-    <p>
-        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Buku', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Buku', ['jenis/index', 'id' => $model->id], ['class' => 'btn btn-warning'])?>
-    </p>
+<div class="jenis-view box box-primary">
+<div class="box-header">
+      <div class="box-body">
 
     <?= DetailView::widget([
         'model' => $model,
+        'template' => '<tr><th width="180px" style="text-align:right">{label}</th><td>{value}</td></tr>',
         'attributes' => [
            
             'jenis_buku',
@@ -29,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
-
 <table class="table table-bordered table-hover table-striped">
 <thead>
     <tr>
@@ -52,6 +47,12 @@ foreach (Buku::find()->where(['id_jenis' => $model->id])->all() as $data) { ?>
 </tr>
 <?php $i++; } ?>
 </table>
+<div>
+ <p>
+        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Buku', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Buku', ['jenis/index', 'id' => $model->id], ['class' => 'btn btn-warning'])?>
+    </p>
+    </div>
 
 <?php
 ?>

@@ -10,12 +10,11 @@ use yii\grid\GridView;
 $this->title = 'Jenis';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="jenis-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="jenis-index box box-primary">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
+    <div class="box-header">
         <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Tambah Jenis', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
@@ -31,4 +30,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+</div>
 </div>
