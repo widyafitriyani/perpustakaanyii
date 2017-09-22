@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\Helpers\ArrayHelper;
+use app\models\Buku;
 /**
  * This is the model class for table "penulis".
  *
@@ -73,12 +74,19 @@ class Penulis extends \yii\db\ActiveRecord
     /** 
     * @return \yii\db\ActiveQuery
     */
-public function getIdJenisKelamin()
+    public function getIdJenisKelamin()
     {
         return $this->hasOne(JenisKelamin::className(), ['id' => 'id_jenis_kelamin']);
     }
-public static function getList()
+    public static function getList()
     {
         return ArrayHelper::map(Penulis::find()->all(),'id','nama');
+    }
+
+    public function getCountGrafik()
+    {
+        return Buku::find()
+        ->andWhere(['penulis' => $this->id])
+        ->count();
     }
 }

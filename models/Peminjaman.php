@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use app\models\Pengguna;
+use app\models\User;
 /**
  * This is the model class for table "peminjaman".
  *
@@ -38,7 +38,7 @@ class Peminjaman extends \yii\db\ActiveRecord
             [['id_buku', 'id_user'], 'integer'],
             [['waktu_dipinjam', 'waktu_pengembalian'], 'safe'],
             [['id_buku'], 'exist', 'skipOnError' => true, 'targetClass' => Buku::className(), 'targetAttribute' => ['id_buku' => 'id']],
-             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => Pengguna::className(), 'targetAttribute' => ['id_user' => 'id']],
+             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
     }
 
@@ -68,7 +68,29 @@ public function getIdBuku()
    */
 public function getIdUser()
     {
-        return $this->hasOne(Pengguna::className(), ['id' => 'id_user']);
+        return $this->hasOne(User::className(), ['id' => 'id_user']);
+    }
+
+     public function getRelationfield($relation,$field)
+    {
+        if(!empty($this->$relation->$field)){
+            return $this->$relation->$field;
+        }
+        else{
+            return null;
+        }
+    }
+
+    public static function getGrafikPerBuku()
+    {
+        $chart = null;
+
+        foreach(Buku::find()->all() as $data)
+        {
+            $chart .= '{"label":"'.$data->nama.'","value":"'.$data->getCountGrafikBuku().'"},';
+        }
+        return $chart;
+
     }
 
 

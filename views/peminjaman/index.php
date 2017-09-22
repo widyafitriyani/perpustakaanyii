@@ -35,11 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 },           
             ],
             
+            
             [
-             'attribute' => 'id_user',
-             'value' => function($data){
-                // $data = variable, ->namaRelasi-namaField
-                return $data->idUser->nama;
+            'attribute' => 'id_user',
+            'value' => function($data){
+                return $data->getRelationField('idUser','nama');
             },
             ],
             'waktu_dipinjam',

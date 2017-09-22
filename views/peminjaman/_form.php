@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
 use app\models\Buku;
-use app\models\Pengguna;
+use app\models\User;
 use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
@@ -38,7 +38,7 @@ use dosamigos\datepicker\DatePicker;
 	]); ?>
 
     <?= $form->field($model, 'id_user')->widget(Select2::classname(), [
-    'data' => Pengguna::getList(),
+    'data' => User::getList(),
     'language' => 'de',
     'options' => ['placeholder' => 'pilih user'],
     'pluginOptions' => [

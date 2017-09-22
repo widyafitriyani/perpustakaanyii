@@ -23,7 +23,8 @@ print Url::to(['site/index']);
             <div class="icon">
                 <i class="fa fa-book"></i>
            </div>
-            <h3> <?= Buku::getCount(); ?> </h3>
+            <h3><?= Buku::getCount(); ?> </h3>
+            <span style="font-size: 30px"></span>
             <a href="<?= Url::to(['buku/index']); ?>" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
             </div>
             </div>
@@ -61,6 +62,7 @@ print Url::to(['site/index']);
             <h3 class="box-title">Grafik Penulis</h3>
             </div>
             <div class="box-body">
+            <?= $this->render('_grafikBukuPerPenulis'); ?>
         </div>
     </div>
 </div>
@@ -70,6 +72,7 @@ print Url::to(['site/index']);
             <h3 class="box-title">Grafik Peminjaman</h3>
             </div>
             <div class="box-body">
+        <?= $this->render('_grafikPeminjamanPerBuku'); ?>
         </div>
     </div>
 </div>

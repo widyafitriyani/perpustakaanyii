@@ -26,10 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
             'attribute' => 'id_user',
-            'value'=> function($data){
-                return $data->idUser->nama;
+            'value' => function($data){
+                return $data->idBuku->nama;
             },
             ],
+            /*'value'=> function($data){
+                return $data->idUser->nama;
+            },*/
             'waktu_dipinjam',
             'waktu_pengembalian',
         ],

@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use kartik\mpdf\Pdf;
 
 /**
  * BukuController implements the CRUD actions for Buku model.
@@ -57,6 +58,12 @@ class BukuController extends Controller
             'model' => $this->findModel($id),
         ]);
     } 
+
+   public function actionCari() 
+   {
+     return $this->render('cari');
+     
+}
 
     /**
      * Creates a new Buku model.

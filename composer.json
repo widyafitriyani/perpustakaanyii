@@ -22,7 +22,8 @@
         "2amigos/yii2-date-picker-widget": "~1.0",
         "dmstr/yii2-adminlte-asset": "2.*",
         "2amigos/yii2-highcharts-widget": "~1.0",
-        "ptrnov/yii2-fusionchart": "^1.1"
+        "ptrnov/yii2-fusionchart": "^1.1",
+        "mpdf/mpdf": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
