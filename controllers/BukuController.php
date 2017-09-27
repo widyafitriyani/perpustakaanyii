@@ -73,26 +73,27 @@ class BukuController extends Controller
     public function actionCreate()
     {
         $model = new Buku();
-
-        if ($model->load(Yii::$app->request->post())) { /*&& $model->save()) {*/
-
-            //get the instance of the upload file
-            $imageName = $model->nama;
-            $model->file = UploadedFile::getInstance($model,'file');
-            $model->file->saveAs( 'upload/'.$imageName.'.'.$model->file->extension );
-
-            // save the path in the db column
-            $model->cover = 'upload/'.$imageName.'.'.$model->file->extension;
+        if ($model->load(Yii::$app->request->post()) ) {
             
-            $model->save();
-
-
+            $cover = UploadedFile::getInstance($model,'cover');
+            if($cover !== null){
+                $model->cover = $cover->baseName . Yii::$app->formatter->asTimestamp(date('Y')) . '.' . $cover->extension;
+                /*print $cover->extension;
+                die;*/
+            }
+            if($model->save()) {
+                    if ($cover!==null) {
+                        $path = Yii::getAlias('@app').'/web/upload/';
+                        $cover->saveAs($path.$model->cover, false);
+                }
+            Yii::$app->session->setFlash('success','Data berhasil disimpan.');
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+             }
+             Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
+        } 
             return $this->render('create', [
                 'model' => $model,
             ]);
-        }
     }
 
     /**
@@ -104,14 +105,27 @@ class BukuController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $foto_lama = $model->cover;
+        if ($model->load(Yii::$app->request->post()) ) {
+            $cover = UploadedFile::getInstance($model,'cover');
+             if($cover !== null){
+                $model->cover = $cover->baseName . Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s')) . '.' . $cover->extension;
+            } else {
+                $model->cover = $foto_lama;
+            }
+            if($model->save()) {
+                    if ($cover!==null) {
+                        $path = Yii::getAlias('@app').'/web/upload/';
+                        $cover->saveAs($path.$model->cover, false);
+                     }
+            Yii::$app->session->setFlash('success','Data berhasil disimpan.');
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+            } 
+            Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
+        }
             return $this->render('update', [
                 'model' => $model,
             ]);
-        }
     }
 
     /**
@@ -212,6 +226,40 @@ class BukuController extends Controller
         return Yii::$app->getResponse()->redirect($path.$filename);
     }
 
+    public function actionViewExportPdf($id)
+    {
+     // get your HTML raw content without any layouts or scripts
+        $model = $this->findModel($id);
+        $content = '';
+        $content .= $this->renderPartial('_viewPdf', ['model' => $model]);
+        // setup kartik\mpdf\Pdf component
+        $pdf = new Pdf([
+            'marginTop' => 5,
+            'marginLeft' => 5,
+            'marginRight' => 5,
+            // set to use core fonts only
+            'mode' => Pdf::MODE_UTF8,
+            // A4 paper format
+            'format' => Pdf::FORMAT_A4,
+            // portrait orientation
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            // stream to browser inline
+            'destination' => Pdf::DEST_BROWSER,
+            // your html content input
+            'content' => $content,
+            'defaultFont' => 'times',
+            // format content from your own css file if needed or use the
+            // enhanced bootstrap css built by Krajee for mPDF formatting
+            'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+            // any css to be embedded if required
+            'cssInline' => '.kv-heading-1{font-size:22px}',
+             // set mPDF properties on the fly
+            'options' => ['title' => 'Detail Buku'],
+             // call mPDF methods on the fly
+        ]);
+        // return the pdf output as per the destination setting
+        return $pdf->render();
+    }    
 }
 
 

@@ -52,7 +52,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         ];
     }
 
-
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPeminjamen()
+    {
+        return $this->hasMany(Peminjaman::className(), ['id_user' => 'id']);
+    }
 
      public static function findIdentity($id)
     {

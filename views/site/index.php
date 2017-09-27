@@ -12,48 +12,51 @@
 <?php print Html::a('link',['site/index']);
 print Url::to(['site/index']); 
   ?>
+  <div class="site-index">
+  <div class="box-header with-border">
+  <div class="body-content">
         <div class="row">
-        <div class="box box-primary">
-        <div class="box-header">
             <div class="col-lg-4 col-xs-6">
                  <div class="small-box bg-aqua">
             <div class="inner">
             <p>Jumlah Buku</p>
-            </div>
             <div class="icon">
                 <i class="fa fa-book"></i>
            </div>
             <h3><?= Buku::getCount(); ?> </h3>
             <span style="font-size: 30px"></span>
-            <a href="<?= Url::to(['buku/index']); ?>" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+            <a class="small-box-footer" href="<?= Url::to(['buku/index']); ?>">More info</a>
             </div>
             </div>
              <div class="col-lg-4 col-xs-6">
                 <div class="small-box bg-red">
                 <div class="inner">
                 <p>Jumlah Penerbit</p>
-                </div>
                 <div class="icon">
                 <i class="fa fa-user"></i>
                 </div>
-                <h3> <?= Penerbit::getCount(); ?> </h3>
-                 <a href="<?= Url::to(['penerbit/index']); ?>" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
+                <h3><?= Penerbit::getCount(); ?></h3>
+                <span style="font-size: 30px"></span>
+                </div>
+                <a class="small-box-footer" href="<?= Url::to(['penerbit/index']); ?>">More info</a>
             </div>
             </div>
             <div class="col-lg-4 col-xs-6">
             <div class="small-box bg-purple">
             <div class="inner">
             <p>Jumlah Peminjaman</p>
-            </div>
             <div class="icon">
             <i class="fa fa-clock-o"></i>
             </div>
-            <h3> <?= Peminjaman::getCount(); ?> </h3>
-               <a href="<?= Url::to(['peminjaman/index']); ?>" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
+            <h3><?= Peminjaman::getCount(); ?></h3>
+            <span style="font-size: 30px"></span>
+            </div>
+               <a class="small-box-footer" href="<?= Url::to(['peminjaman/index']); ?>">More info</a>
                </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 <div class="row">
         <div class="col-sm-6">

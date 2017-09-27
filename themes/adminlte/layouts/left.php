@@ -101,7 +101,7 @@ use yii\helpers\Html;
                         'icon' => 'th',
                         'url' => '#',
                         'items' => [
-                     ['label' => 'User', 'icon' => 'user', 'url' => ['/user'],],
+                     ['label' => 'User', 'icon' => 'user', 'url' => ['user/index'],],
                      ['label' => 'Logout', 'url' => ['site/logout'], 'template' => '<a href="{url}" data-method="post">{icon} {label}</a>' , 'visible' => !Yii::$app->user->isGuest],  
                 ],
                 ],

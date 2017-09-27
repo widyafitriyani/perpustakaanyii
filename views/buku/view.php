@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
             'attribute' => 'id_jenis',
             'value'=> function($data){
-                return $data->idJenis->jenis_buku;
+                return $data->getRelationField('idJenis','jenis_buku');
             },
             ],
             
@@ -42,4 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div>
    <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Buku',['update', 'id' => $model->id], ['class' => 'btn btn-primary'])?>
            <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Buku',['buku/index', 'id' => $model->id], ['class' => 'btn btn-warning'])?>
+            <?= Html::a('<i class="fa fa-file"></i> Export PDF', ['view-export-pdf', 'id' => $model->id], ['target' => '_blank', 'class' => 'btn btn-success btn-flat']) ?>
+            </div>
 </div>

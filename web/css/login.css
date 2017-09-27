@@ -59,7 +59,7 @@
   /* IE6-9 */
 }
 html {
-  background: url(../images/bg.jpg) no-repeat center center fixed;
+  background: url(../images/buku.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -94,8 +94,8 @@ html {
 .login-pages,
 .register-page {
   background: #333 none repeat scroll 0 0;
-  border-top: 5px solid #F5C316;
-  border-bottom: 5px solid #F5C316;
+  border-top: 5px solid #3B5998;
+  border-bottom: 5px solid #3B5998;
   height: 140px;
   left: 0;
   position: fixed;
@@ -111,7 +111,7 @@ html {
   top: -145px;
   border-radius: 6px;
   overflow: hidden;
-  border: 3px solid #F5C316;
+  border: 3px solid #3B5998;
   box-shadow: 2px 4px 8px #000;
 }
 .login-box-body,

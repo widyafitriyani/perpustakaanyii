@@ -49,10 +49,10 @@ use app\models\Penulis;
     ],
 	]); ?>
 
-    <?= $form->field($model, 'file')->fileInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cover')->fileInput(); ?>
 
         <div class="col-sm-offset-2 col-sm-3">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Simpan' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

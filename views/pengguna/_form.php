@@ -7,10 +7,23 @@ use yii\widgets\ActiveForm;
 /* @var $model app\user\Pengguna */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<?php $form = ActiveForm::begin([
+    'layout'=>'horizontal',
+    'enableAjaxValidation'=>false,
+    'enableClientValidation'=>false,
+    'fieldConfig' => [
+        'horizontalCssClasses' => [
+            'label' => 'col-sm-2',
+            'wrapper' => 'col-sm-4',
+            'error' => '',
+            'hint' => '',
+        ],
+    ]
+]); ?>
 
-<div class="pengguna-form">
+<div class="pengguna-form box boxprimary">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 

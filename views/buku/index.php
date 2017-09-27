@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\BukuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -47,8 +48,14 @@ $this->params['breadcrumbs'][] = $this->title;
             },
 
             ],
-            'cover',
-           
+            [
+            'attribute' => 'cover',
+            'format' => 'raw',
+            'headerOptions' => ['style' => 'width:100px'],
+            'value' => function($data){
+                    return $data->getGambar(['class'=>'img-responsive']);
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
             'attribute' => 'id_user',
             'value' => function($data){
-                return $data->idBuku->nama;
+                return $data->idUser->nama;
             },
             ],
             /*'value'=> function($data){
@@ -43,5 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <p>
         <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Peminjaman', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Peminjaman',['peminjaman/index', 'id' => $model->id], ['class' => 'btn btn-warning'])?>
+        <?= Html::a('<i class="fa fa-file"></i> Export PDF', ['view-export-pdf', 'id' => $model->id], ['target' => '_blank', 'class' => 'btn btn-success btn-flat']) ?>
         </p>
         </div>

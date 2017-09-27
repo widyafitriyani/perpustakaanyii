@@ -8,6 +8,7 @@ use yii\Helpers\ArrayHelper;
 use kartik\mpdf\Pdf;
 use app\models\Penulis;
 use app\models\Peminjaman;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "buku".
@@ -37,9 +38,7 @@ class Buku extends \yii\db\ActiveRecord
     {
         return [
             [['penulis'], 'required'],
-            [['file'],'file'],
             [['id_jenis'], 'string', 'max' => 33],
-            [['cover', 'penulis'], 'required'],
             [['nama', 'cover'], 'string', 'max' => 255],
             [['penulis'], 'string', 'max' => 40],
             [['id_jenis'], 'exist', 'skipOnError' => true, 'targetClass' => Jenis::className(), 'targetAttribute' => ['id_jenis' => 'id']],
@@ -57,7 +56,7 @@ class Buku extends \yii\db\ActiveRecord
             'nama' => 'Nama',
             'penulis' => 'Penulis',
             'id_jenis' => 'Jenis',
-            'file' => 'Cover',
+            'cover' => 'Cover',
         ];
     }
 
@@ -106,17 +105,6 @@ class Buku extends \yii\db\ActiveRecord
         return self::find()->count();
     }
 
-    public function upload()
-    {
-        if ($this->validate()) {
-            $this->cover->saveAs('upload/' .$this->cover->baseName. '.' .$this->cover->extension);
-            return true;
-        } else {
-            return false;
-        
-        }
-    }
-
     public static function getGrafikPerPenulis()
     {
         $chart = null;
@@ -134,4 +122,15 @@ class Buku extends \yii\db\ActiveRecord
     ->andWhere(['id_buku' => $this->id])
     ->count();
     }
+
+     public function getGambar($htmlOptions=[])
+    {
+        //jika file ada dalam direktori
+        if($this->cover == null && !file_exists('@web/upload/'.$this->cover)){
+            return Html::img('@web/images/fisika.jpg', $htmlOptions);
+        } else {
+            return Html::img('@web/upload/'.$this->cover, $htmlOptions);
+        }
+    }
+
 }
